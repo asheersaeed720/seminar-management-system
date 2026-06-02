@@ -4,26 +4,26 @@
   <div class="container">
     <div class="row g-4">
       <div class="col-md-4">
-        <h5 class="fw-bold"><i class="fa-solid fa-graduation-cap me-2"></i><?= SITE_NAME ?></h5>
-        <p class="text-muted small"><?= SITE_TAGLINE ?>. Connecting students with knowledge through world-class seminars.</p>
+        <h5 class="fw-bold text-white"><i class="fa-solid fa-graduation-cap me-2"></i><?= SITE_NAME ?></h5>
+        <p class="text-white-50 small"><?= SITE_TAGLINE ?>. Connecting students with knowledge through world-class seminars.</p>
       </div>
       <div class="col-md-4">
-        <h6 class="fw-semibold text-uppercase text-muted small mb-3">Quick Links</h6>
+        <h6 class="fw-semibold text-uppercase text-white small mb-3">Quick Links</h6>
         <ul class="list-unstyled small">
-          <li><a href="<?= BASE_URL ?>/" class="text-muted text-decoration-none">Home</a></li>
-          <li><a href="<?= BASE_URL ?>/seminars.php" class="text-muted text-decoration-none">Browse Seminars</a></li>
+          <li><a href="<?= BASE_URL ?>/" class="text-white-50 text-decoration-none footer-link">Home</a></li>
+          <li><a href="<?= BASE_URL ?>/seminars.php" class="text-white-50 text-decoration-none footer-link">Browse Seminars</a></li>
         </ul>
       </div>
       <div class="col-md-4">
-        <h6 class="fw-semibold text-uppercase text-muted small mb-3">Staff Portal</h6>
+        <h6 class="fw-semibold text-uppercase text-white small mb-3">Staff Portal</h6>
         <ul class="list-unstyled small">
-          <li><a href="<?= BASE_URL ?>/admin/login.php" class="text-muted text-decoration-none">Admin Login</a></li>
-          <li><a href="<?= BASE_URL ?>/teacher/login.php" class="text-muted text-decoration-none">Teacher Login</a></li>
+          <li><a href="<?= BASE_URL ?>/admin/login.php" class="text-white-50 text-decoration-none footer-link">Admin Login</a></li>
+          <li><a href="<?= BASE_URL ?>/teacher/login.php" class="text-white-50 text-decoration-none footer-link">Teacher Login</a></li>
         </ul>
       </div>
     </div>
     <hr class="border-secondary mt-4">
-    <p class="text-center text-muted small mb-0">&copy; <?= date('Y') ?> <?= SITE_NAME ?>. All rights reserved.</p>
+    <p class="text-center text-white-50 small mb-0">&copy; <?= date('Y') ?> <?= SITE_NAME ?>. All rights reserved.</p>
   </div>
 </footer>
 

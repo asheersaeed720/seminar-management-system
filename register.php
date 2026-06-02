@@ -112,9 +112,31 @@ require_once __DIR__ . '/includes/public_header.php';
           </div>
           <div class="col-md-6 mb-3">
             <label class="form-label fw-medium">Department</label>
-            <input type="text" name="department" class="form-control"
-                   placeholder="e.g. Computer Science"
-                   value="<?= e($_POST['department'] ?? '') ?>">
+            <select name="department" class="form-select">
+              <option value="">— Select Department —</option>
+              <?php
+              $departments = [
+                  'Computer Science',
+                  'Information Technology',
+                  'Software Engineering',
+                  'Electrical Engineering',
+                  'Mechanical Engineering',
+                  'Civil Engineering',
+                  'Business Administration',
+                  'Economics',
+                  'Mathematics',
+                  'Physics',
+                  'Chemistry',
+                  'Biology',
+                  'Psychology',
+                  'Education',
+                  'Other',
+              ];
+              $selectedDept = $_POST['department'] ?? '';
+              foreach ($departments as $d): ?>
+              <option value="<?= e($d) ?>" <?= $selectedDept === $d ? 'selected' : '' ?>><?= e($d) ?></option>
+              <?php endforeach; ?>
+            </select>
           </div>
         </div>
 

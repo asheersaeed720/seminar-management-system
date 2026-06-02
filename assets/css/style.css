@@ -189,6 +189,9 @@ body {
 
 .capacity-bar { height: 6px; border-radius: 3px; }
 
+/* ── Footer links ─────────────────────────────────────────── */
+.footer-link:hover { color: #fff !important; }
+
 @media (max-width: 768px) {
   #sidebar { position: fixed; z-index: 1040; }
   .sidebar-collapsed #sidebar { width: var(--sidebar-w); }
