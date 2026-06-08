@@ -49,11 +49,6 @@
           <i class="fa fa-users fa-fw"></i> Registrations
         </a>
       </li>
-      <li class="nav-item">
-        <a href="<?= BASE_URL ?>/admin/attendance_report.php" class="nav-link sidebar-link <?= (basename($_SERVER['PHP_SELF']) === 'attendance_report.php') ? 'active' : '' ?>">
-          <i class="fa fa-clipboard-check fa-fw"></i> Attendance
-        </a>
-      </li>
       <li class="nav-item mt-auto pt-3">
         <a href="<?= BASE_URL ?>/" class="nav-link sidebar-link" target="_blank">
           <i class="fa fa-globe fa-fw"></i> Public Site

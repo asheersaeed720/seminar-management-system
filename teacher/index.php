@@ -61,7 +61,7 @@ require_once __DIR__ . '/../includes/teacher_header.php';
   </div>
   <div class="table-responsive">
     <table class="table mb-0">
-      <thead class="table-light"><tr><th>Title</th><th>Date</th><th>Venue</th><th>Registered</th><th>Status</th><th>Action</th></tr></thead>
+      <thead class="table-light"><tr><th>Title</th><th>Date</th><th>Venue</th><th>Registered</th><th>Status</th><th>Participants</th></tr></thead>
       <tbody>
         <?php foreach (array_slice($mySeminars, 0, 5) as $s): ?>
         <tr>
@@ -71,8 +71,8 @@ require_once __DIR__ . '/../includes/teacher_header.php';
           <td><span class="badge bg-info"><?= $s['reg_count'] ?></span></td>
           <td><?= statusBadge($s['status']) ?></td>
           <td>
-            <a href="<?= BASE_URL ?>/teacher/attendance.php?seminar_id=<?= $s['id'] ?>" class="btn btn-sm btn-success">
-              <i class="fa fa-clipboard-check me-1"></i>Attendance
+            <a href="<?= BASE_URL ?>/teacher/participants.php?seminar_id=<?= $s['id'] ?>" class="btn btn-sm btn-outline-primary">
+              <i class="fa fa-users me-1"></i>View
             </a>
           </td>
         </tr>

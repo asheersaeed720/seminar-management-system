@@ -94,11 +94,7 @@ function getTeacherById(int $id): ?array {
 function getRegistrationsBySeminar(int $seminarId): array {
     $db   = getDB();
     $stmt = $db->prepare(
-        'SELECT r.*, a.status AS attendance_status
-         FROM registrations r
-         LEFT JOIN attendance a ON a.registration_id = r.id AND a.seminar_id = r.seminar_id
-         WHERE r.seminar_id = ?
-         ORDER BY r.registration_date ASC'
+        'SELECT * FROM registrations WHERE seminar_id = ? ORDER BY registration_date ASC'
     );
     $stmt->execute([$seminarId]);
     return $stmt->fetchAll();
@@ -129,23 +125,6 @@ function getSeminarCapacityInfo(int $seminarId): array {
         'registered' => $registered,
         'available'  => max(0, $capacity - $registered),
     ];
-}
-
-// ── Attendance ────────────────────────────────────────────────
-function getAttendanceSummary(int $seminarId): array {
-    $db   = getDB();
-    $stmt = $db->prepare(
-        "SELECT
-            COUNT(r.id)                                       AS total,
-            SUM(CASE WHEN a.status = 'present' THEN 1 ELSE 0 END) AS present,
-            SUM(CASE WHEN a.status = 'absent'  THEN 1 ELSE 0 END) AS absent,
-            SUM(CASE WHEN a.status IS NULL      THEN 1 ELSE 0 END) AS unmarked
-         FROM registrations r
-         LEFT JOIN attendance a ON a.registration_id = r.id AND a.seminar_id = r.seminar_id
-         WHERE r.seminar_id = ?"
-    );
-    $stmt->execute([$seminarId]);
-    return $stmt->fetch();
 }
 
 // ── Teacher's seminars ────────────────────────────────────────

@@ -32,11 +32,6 @@
           <i class="fa fa-calendar-alt fa-fw"></i> My Seminars
         </a>
       </li>
-      <li class="nav-item">
-        <a href="<?= BASE_URL ?>/teacher/attendance.php" class="nav-link sidebar-link <?= basename($_SERVER['PHP_SELF']) === 'attendance.php' ? 'active' : '' ?>">
-          <i class="fa fa-clipboard-check fa-fw"></i> Mark Attendance
-        </a>
-      </li>
       <li class="nav-item mt-auto pt-3">
         <a href="<?= BASE_URL ?>/" class="nav-link sidebar-link" target="_blank">
           <i class="fa fa-globe fa-fw"></i> Public Site
