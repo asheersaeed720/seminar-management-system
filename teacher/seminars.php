@@ -45,11 +45,54 @@ require_once __DIR__ . '/../includes/teacher_header.php';
         <a href="<?= BASE_URL ?>/teacher/participants.php?seminar_id=<?= $s['id'] ?>" class="btn btn-sm btn-outline-primary flex-grow-1">
           <i class="fa fa-users me-1"></i>Participants
         </a>
+        <?php if ($s['status'] === 'upcoming'): ?>
+        <?php
+          $protocol   = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
+          $regLink    = $protocol . '://' . $_SERVER['HTTP_HOST'] . BASE_URL . '/register.php?seminar_id=' . $s['id'];
+        ?>
+        <button type="button" class="btn btn-sm btn-outline-secondary"
+                data-bs-toggle="modal" data-bs-target="#qrModal"
+                data-title="<?= e($s['title']) ?>"
+                data-qr="https://api.qrserver.com/v1/create-qr-code/?data=<?= urlencode($regLink) ?>&size=220x220&margin=10"
+                data-link="<?= e($regLink) ?>">
+          <i class="fa fa-qrcode me-1"></i>QR
+        </button>
+        <?php endif; ?>
       </div>
     </div>
   </div>
   <?php endforeach; ?>
 </div>
 <?php endif; ?>
+
+<!-- QR Code Modal -->
+<div class="modal fade" id="qrModal" tabindex="-1" aria-labelledby="qrModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-0 shadow">
+      <div class="modal-header border-0 pb-0">
+        <h5 class="modal-title fw-bold" id="qrModalLabel"><i class="fa fa-qrcode me-2"></i>Registration QR Code</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center py-4">
+        <p class="text-muted small mb-3" id="qrSeminarTitle"></p>
+        <img id="qrImage" src="" alt="QR Code" class="img-fluid rounded-3 border mb-3" style="max-width:220px">
+        <p class="small text-muted mb-2">Students scan this code to open the registration form</p>
+        <a id="qrDirectLink" href="#" target="_blank" class="btn btn-sm btn-outline-primary">
+          <i class="fa fa-external-link-alt me-1"></i>Open Link
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+document.getElementById('qrModal').addEventListener('show.bs.modal', function (e) {
+  var btn = e.relatedTarget;
+  document.getElementById('qrModalLabel').innerHTML = '<i class="fa fa-qrcode me-2"></i>' + btn.dataset.title;
+  document.getElementById('qrSeminarTitle').textContent = 'Share this QR code with students to register instantly';
+  document.getElementById('qrImage').src = btn.dataset.qr;
+  document.getElementById('qrDirectLink').href = btn.dataset.link;
+});
+</script>
 
 <?php require_once __DIR__ . '/../includes/teacher_footer.php'; ?>

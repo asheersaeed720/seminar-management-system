@@ -18,6 +18,10 @@ $pageTitle  = $seminar['title'];
 $teachers   = getSeminarTeachers($id);
 $cap        = getSeminarCapacityInfo($id);
 
+$protocol    = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
+$registerUrl = $protocol . '://' . $_SERVER['HTTP_HOST'] . BASE_URL . '/register.php?seminar_id=' . $seminar['id'];
+$qrUrl       = 'https://api.qrserver.com/v1/create-qr-code/?data=' . urlencode($registerUrl) . '&size=180x180&margin=10';
+
 require_once __DIR__ . '/includes/public_header.php';
 ?>
 
@@ -124,6 +128,17 @@ require_once __DIR__ . '/includes/public_header.php';
             </button>
           <?php else: ?>
             <button class="btn btn-danger w-100 py-2" disabled>Fully Booked</button>
+          <?php endif; ?>
+
+          <?php if ($seminar['status'] === 'upcoming'): ?>
+          <hr>
+          <div class="text-center">
+            <p class="small text-muted mb-2"><i class="fa fa-qrcode me-1"></i>Scan to Register</p>
+            <img src="<?= $qrUrl ?>" alt="QR Code for registration"
+                 class="img-fluid rounded-2 border" style="max-width:180px"
+                 loading="lazy">
+            <p class="small text-muted mt-2 mb-0">Point your phone camera at this code</p>
+          </div>
           <?php endif; ?>
         </div>
       </div>
